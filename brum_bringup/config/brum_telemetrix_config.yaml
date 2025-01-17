@@ -1,0 +1,27 @@
+/**:
+  ros__parameters:
+    device:
+      mirte:
+        type: breadboard
+        board: pico
+        max_frequency: 50
+    distance:
+      center:
+        device: mirte
+        pins:
+          trigger: GP16
+          echo: GP17
+    motor:
+      left:
+        device: mirte
+        type: pp
+        pins:
+          p1: GP8
+          p2: GP9
+      right:
+        device: mirte
+        type: pp
+        inverted: true
+        pins:
+          p1: GP6
+          p2: GP7
