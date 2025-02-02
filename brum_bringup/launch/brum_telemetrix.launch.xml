@@ -25,9 +25,9 @@
       <arg name="config_path" value="$(find-pkg-share brum_bringup)/config/brum_telemetrix_config.yaml" />
     </include>
 
-    <!-- <include file="$(find-pkg-share mirte_control)/launch/mirte.launch.py"> -->
-      <!-- <arg name="frame_prefix" value="$(var frame_prefix)" /> -->
-    <!-- </include> -->
+    <include file="$(find-pkg-share mirte_control)/launch/mirte.launch.py">
+      <arg name="frame_prefix" value="$(var frame_prefix)" />
+    </include>
 
     <include file="$(find-pkg-share brum_camera)/launch/camera.launch.xml" />
   </group>
