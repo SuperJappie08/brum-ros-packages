@@ -13,6 +13,6 @@
   <xacro:diffbot_ros2_control
     name="MirteHardware" prefix="$(arg prefix)" />
 
-  <xacro:mirte_modular_hardware_joint_encoder name="right_wheel_joint" topic="" />
+  <xacro:mirte_modular_hardware_joint_encoder name="right_wheel_joint" topic="io/encoder/right" />
 
 </robot>
