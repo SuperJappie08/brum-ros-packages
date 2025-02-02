@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>brum_description</name>
+  <version>0.1.0</version>
+  <description>
+    <p>URDF Description package for brum_description</p>
+    <p>This package contains configuration data, 3D models and launch files
+for brum_description robot</p>
+  </description>
+  <maintainer email="36795178+SuperJappie08@users.noreply.github.com">SuperJappie08</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+  <exec_depend>launch_xml</exec_depend>
+  
+  <exec_depend>robot_state_publisher</exec_depend>
+  <!-- <depend>rviz</depend> -->
+  <!-- <depend>joint_state_publisher_gui</depend> -->
+  <!-- <depend>gazebo</depend> -->
+  
+  <export>
+    <build_type>ament_cmake</build_type>
+    <architecture_independent />
+  </export>
+</package>

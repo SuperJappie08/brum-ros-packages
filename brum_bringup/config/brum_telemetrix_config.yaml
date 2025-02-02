@@ -1,27 +1,39 @@
 /**:
   ros__parameters:
     device:
-      mirte:
+      brum:
         type: breadboard
         board: pico
         max_frequency: 50
     distance:
       center:
-        device: mirte
+        device: brum
         pins:
           trigger: GP16
           echo: GP17
     motor:
       left:
-        device: mirte
+        device: brum
         type: pp
         pins:
           p1: GP8
           p2: GP9
       right:
-        device: mirte
+        device: brum
         type: pp
         inverted: true
         pins:
           p1: GP6
           p2: GP7
+    encoder:
+      left:
+        device: brum
+        pins:
+          A: GP14
+          B: GP15
+      right:
+        device: brum
+        pins:
+          A: GP12
+          B: GP13
+

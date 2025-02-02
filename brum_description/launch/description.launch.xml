@@ -1,0 +1,9 @@
+<launch>
+  <!-- <arg name="description_file" -->
+    <!-- default="brum.urdf" -->
+    <!-- description="URDF/XACRO description file with the robot." /> -->
+  
+  <node pkg="robot_state_publisher" exec="robot_state_publisher" >
+    <param name="robot_description" value="$(command 'xacro $(find-pkg-share brum_description)/urdf/brum.urdf.xacro')"/>
+  </node>
+</launch>
