@@ -4,15 +4,15 @@
 
   <xacro:include filename="brum_base.urdf" />
 
-  <xacro:include
-    filename="$(find mirte_control)/ros2_control/diffbot.ros2_control.xacro" />
+  <!-- <xacro:include
+    filename="$(find mirte_control)/ros2_control/diffbot.ros2_control.xacro" /> -->
 
-  <xacro:include
-    filename="$(find mirte_modular_hardware_interface)/urdf/joint_encoder.ros2_control.xacro" />
+  <!-- <xacro:include
+    filename="$(find mirte_modular_hardware_interface)/urdf/joint_encoder.ros2_control.xacro" /> -->
 
-  <xacro:diffbot_ros2_control
-    name="MirteHardware" prefix="$(arg prefix)" />
+  <!-- <xacro:diffbot_ros2_control
+    name="MirteHardware" prefix="$(arg prefix)" /> -->
 
-  <xacro:mirte_modular_hardware_joint_encoder name="right_wheel_joint" topic="io/encoder/right" />
+  <!-- <xacro:mirte_modular_hardware_joint_encoder name="right_wheel_joint" topic="io/encoder/right" /> -->
 
 </robot>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) -->
-    <!-- For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
-<robot
-  name="brum_description">
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot name="brum">
   <link name="base_link"/>
   <joint name="base_frame_joint" type="fixed">
     <parent link="base_link"/>
@@ -12,17 +12,17 @@
     name="frame_link">
     <inertial>
       <origin
-        xyz="0.0584615327877124 0.0495736241849834 0.00795392985129649"
+        xyz="-0.051432 -0.00091594 0.0079105"
         rpy="0 0 0" />
       <mass
-        value="0.26203100747214" />
+        value="0.26172" />
       <inertia
-        ixx="9.47884593300043E-05"
-        ixy="1.00362258451212E-07"
-        ixz="-2.70612383223972E-06"
-        iyy="0.000270018591622297"
-        iyz="5.22139160504474E-09"
-        izz="0.00034733631299585" />
+        ixx="9.478E-05"
+        ixy="1.0036E-07"
+        ixz="-2.7061E-06"
+        iyy="0.00027002"
+        iyz="5.2214E-09"
+        izz="0.00034733" />
     </inertial>
     <visual>
       <origin
@@ -35,7 +35,7 @@
       <material
         name="">
         <color
-          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+          rgba="0.79216 0.81961 0.93333 1" />
       </material>
     </visual>
     <collision>
@@ -59,9 +59,9 @@
       <inertia
         ixx="3.6752E-05"
         ixy="-1.034E-21"
-        ixz="-6.8242E-21"
+        ixz="-7.2895E-21"
         iyy="0.00013386"
-        iyz="1.2925E-23"
+        iyz="-2.068E-22"
         izz="0.00011182" />
     </inertial>
     <visual>
@@ -92,7 +92,7 @@
     name="powerbank_joint"
     type="fixed">
     <origin
-      xyz="0.016919 0.0505 -0.029"
+      xyz="-0.092881 0 -0.029"
       rpy="-1.5708 0 -1.5708" />
     <parent
       link="frame_link" />
@@ -145,14 +145,14 @@
     name="right_wheel_joint"
     type="continuous">
     <origin
-      xyz="0.1098 -0.02875 -0.01815"
+      xyz="0 -0.07925 -0.01815"
       rpy="1.5708 0 0" />
     <parent
       link="frame_link" />
     <child
       link="right_wheel" />
     <axis
-      xyz="0 0 1" />
+      xyz="0 0 -1" />
   </joint>
   <link
     name="left_wheel">
@@ -198,14 +198,14 @@
     name="left_wheel_joint"
     type="continuous">
     <origin
-      xyz="0.1098 0.12975 -0.01815"
+      xyz="0 0.07925 -0.01815"
       rpy="-1.5708 0 0" />
     <parent
       link="frame_link" />
     <child
       link="left_wheel" />
     <axis
-      xyz="0 0 -1" />
+      xyz="0 0 1" />
   </joint>
   <link
     name="camera_mount_link">
@@ -251,7 +251,7 @@
     name="camera_mount_joint"
     type="fixed">
     <origin
-      xyz="0.163248855994184 0.0767499999979599 0.0349999999999995"
+      xyz="0.0534488559945167 0.0262499999959915 0.0349999999999993"
       rpy="1.5707963267949 0 -1.5707963267949" />
     <parent
       link="frame_link" />
@@ -264,16 +264,16 @@
     name="camera_link">
     <inertial>
       <origin
-        xyz="1.4318E-12 -0.0056758 1.4404E-13"
+        xyz="-1.289E-12 -0.0056758 4.0787E-12"
         rpy="0 0 0" />
       <mass
         value="0.012179" />
       <inertia
         ixx="1.0523E-06"
-        ixy="5.7936E-21"
+        ixy="5.8674E-21"
         ixz="-9.7186E-13"
         iyy="2.1867E-06"
-        iyz="-3.6328E-22"
+        iyz="-1.9335E-23"
         izz="1.4643E-06" />
     </inertial>
     <visual>
@@ -357,7 +357,7 @@
     name="under_cairrage_joint"
     type="fixed">
     <origin
-      xyz="0.1582 0.013 -0.02385"
+      xyz="0.0484 -0.0375 -0.02385"
       rpy="1.5708 0 1.5708" />
     <parent
       link="frame_link" />
@@ -423,17 +423,17 @@
     name="caster_link">
     <inertial>
       <origin
-        xyz="0 0 0"
+        xyz="9.9226E-16 0.0068784 -3.4694E-18"
         rpy="0 0 0" />
       <mass
-        value="0" />
+        value="0.0062086" />
       <inertia
-        ixx="0"
-        ixy="0"
-        ixz="0"
-        iyy="0"
-        iyz="0"
-        izz="0" />
+        ixx="3.5051E-07"
+        ixy="9.6652E-23"
+        ixz="4.0748E-16"
+        iyy="5.7413E-07"
+        iyz="-3.1987E-23"
+        izz="6.0194E-07" />
     </inertial>
     <visual>
       <origin
@@ -463,12 +463,65 @@
     name="caster_joint"
     type="fixed">
     <origin
-      xyz="-0.018201 0.0505 -0.0442"
+      xyz="-0.128 0 -0.032"
       rpy="-1.5708 0 -1.5708" />
     <parent
       link="frame_link" />
     <child
       link="caster_link" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="laser_link">
+    <inertial>
+      <origin
+        xyz="-0.0013136 0.020151 -0.00098529"
+        rpy="0 0 0" />
+      <mass
+        value="0.061052" />
+      <inertia
+        ixx="1.129E-05"
+        ixy="-8.7961E-08"
+        ixz="-7.4689E-08"
+        iyy="1.152E-05"
+        iyz="3.4851E-07"
+        izz="1.0065E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://brum_description/meshes/laser_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.29804 0.29804 0.29804 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://brum_description/meshes/laser_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="laser_joint"
+    type="fixed">
+    <origin
+      xyz="0.017449 0 0.08845"
+      rpy="-1.5708 0 -1.5708" />
+    <parent
+      link="frame_link" />
+    <child
+      link="laser_link" />
     <axis
       xyz="0 0 0" />
   </joint>
