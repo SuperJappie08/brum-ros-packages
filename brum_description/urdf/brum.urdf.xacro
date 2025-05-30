@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="brum">
   <xacro:arg name="prefix" default="" />
+  <xacro:arg name="use_lidar" default="true" />
+  <xacro:arg name="use_camera" default="true" />
+  <xacro:arg name="use_powerbank" default="true" />
+  <xacro:arg name="use_sensor_plate" default="true" />
 
-  <xacro:include filename="brum_base.urdf" />
+  <link name="base_link" />
+
+  <link name="base_footprint" />
+
+  <joint name="footprint_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="base_footprint" />
+    <origin xyz="0.0 0.0 -0.0520264" />
+  </joint>
+
+  <xacro:include filename="$(find brum_description)/urdf/frame.urdf.xacro" ns="frame" />
+
+  <xacro:include filename="$(find brum_description)/urdf/wheels.urdf.xacro" />
+  <xacro:include filename="$(find brum_description)/urdf/caster.urdf.xacro" ns="caster" />
 
   <!-- <xacro:include
     filename="$(find mirte_control)/ros2_control/diffbot.ros2_control.xacro" /> -->
@@ -13,6 +30,22 @@
   <!-- <xacro:diffbot_ros2_control
     name="MirteHardware" prefix="$(arg prefix)" /> -->
 
-  <!-- <xacro:mirte_modular_hardware_joint_encoder name="right_wheel_joint" topic="io/encoder/right" /> -->
+  <!-- <xacro:mirte_modular_hardware_joint_encoder name="right_wheel_joint" topic="io/encoder/right"
+  /> -->
+  <xacro:if value="$(arg use_sensor_plate)">
+    <xacro:include filename="$(find brum_description)/urdf/sensor_plate.urdf.xacro"
+      ns="sensor_plate" />
+  </xacro:if>
 
+  <xacro:if value="$(arg use_powerbank)">
+    <xacro:include filename="$(find brum_description)/urdf/powerbank.urdf.xacro" />
+  </xacro:if>
+
+  <xacro:if value="$(arg use_camera)">
+    <xacro:include filename="$(find brum_description)/urdf/camera.urdf.xacro" ns="camera" />
+  </xacro:if>
+
+  <xacro:if value="$(arg use_lidar)">
+    <xacro:include filename="$(find brum_description)/urdf/lidar.urdf.xacro" />
+  </xacro:if>
 </robot>

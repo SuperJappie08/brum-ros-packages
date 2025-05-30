@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:property name="lidar_top_radius" value="0.0175"/>
+  <xacro:property name="lidar_top_height" value="0.0125"/>
+  <xacro:property name="lidar_top_z_offset" value="0.005"/>
+
+  <xacro:property name="lidar_base_height" value="0.0225"/>
+  <xacro:property name="lidar_base_width" value="0.039"/>
+
+  <link name="laser_mount_link">
+    <inertial>
+      <origin xyz="-0.0013136 0.020151 -0.00098529" />
+      <mass value="0.061052" />
+      <inertia
+        ixx="1.129E-05"
+        ixy="-8.7961E-08"
+        ixz="-7.4689E-08"
+        iyy="1.152E-05"
+        iyz="3.4851E-07"
+        izz="1.0065E-05" />
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://brum_description/meshes/laser_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.29804 0.29804 0.29804 1" />
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0 ${lidar_top_z_offset-lidar_top_height/2} 0" rpy="${radians(90)} 0.0 0.0"/>
+      <geometry>
+        <cylinder radius="${lidar_top_radius}" length="${lidar_top_height}"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="0 ${lidar_base_height/2+lidar_top_height/2-lidar_top_z_offset/4} 0" rpy="${radians(90)} 0.0 0.0"/>
+      <geometry>
+        <box size="${lidar_base_width} ${lidar_base_width} ${lidar_base_height}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="laser_mount_frame_joint" type="fixed">
+    <origin xyz="0.017449 0 0.08845" rpy="-1.5708 0 -1.5708" />
+    <parent link="frame_link" />
+    <child link="laser_mount_link" />
+  </joint>
+
+  <link name="laser_link" />
+  <joint name="laser_mount_joint" type="fixed">
+    <parent link="laser_mount_link" />
+    <child link="laser_link" />
+
+    <origin rpy="1.5708 -1.5708 0.0" />
+  </joint>
+</robot>

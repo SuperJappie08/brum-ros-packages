@@ -1,9 +1,13 @@
 <launch>
-  <!-- <arg name="description_file" -->
-    <!-- default="brum.urdf" -->
-    <!-- description="URDF/XACRO description file with the robot." /> -->
-  
-  <node pkg="robot_state_publisher" exec="robot_state_publisher" >
-    <param name="robot_description" value="$(command 'xacro $(find-pkg-share brum_description)/urdf/brum.urdf.xacro')"/>
+  <arg name="use_lidar" default="true" />
+  <arg name="use_camera" default="true" />
+  <arg name="use_powerbank" default="true" />
+  <arg name="use_sensor_plate" default="true" />
+
+  <let name="brum_xacro_options"
+    value="use_lidar:=$(var use_lidar) use_camera:=$(var use_camera) use_powerbank:=$(var use_powerbank) use_sensor_plate:=$(var use_sensor_plate)" />
+  <node pkg="robot_state_publisher" exec="robot_state_publisher">
+    <param name="robot_description"
+      value="$(command 'xacro $(find-pkg-share brum_description)/urdf/brum.urdf.xacro $(var brum_xacro_options)')" />
   </node>
 </launch>

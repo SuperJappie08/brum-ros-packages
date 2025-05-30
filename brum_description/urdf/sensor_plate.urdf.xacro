@@ -1,0 +1,138 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:property name="sensor_plate_main_length" value="0.035" />
+  <xacro:property name="sensor_plate_height" value="0.008" />
+  <xacro:property name="sensor_plate_main_width" value="0.10" />
+  <xacro:property name="sensor_plate_main_x_offset" value="-0.0125" />
+
+  <xacro:property name="sensor_plate_wall_inset" value="-0.002"/>
+  <xacro:property name="sensor_plate_pillar_radius" value="0.002"/>
+  <xacro:property name="sensor_plate_pillar_length" value="0.02"/>
+
+  <xacro:property name="sensor_plate_chin_thickness" value="0.003"/>
+  <xacro:property name="sensor_plate_chin_length" value="0.012"/>
+  <xacro:property name="sensor_plate_chin_width" value="0.045"/>
+
+
+  <link name="sensor_plate_link">
+    <inertial>
+      <origin xyz="0.0375 0.0055345 -0.015987" />
+      <mass value="0.014205" />
+      <inertia
+        ixx="1.8823E-06"
+        ixy="-1.0574E-16"
+        ixz="-5.3685E-16"
+        iyy="8.7571E-06"
+        iyz="-6.6875E-14"
+        izz="7.595E-06" />
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://brum_description/meshes/sensor_plate_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+
+    <collision name="plate_main">
+      <origin xyz="${sensor_plate_main_width/2+sensor_plate_main_x_offset} 0.0 ${-sensor_plate_main_length/2}"/>
+      <geometry>
+        <box size="${sensor_plate_main_width} ${sensor_plate_height} ${sensor_plate_main_length}" />
+      </geometry>
+    </collision>
+
+    <collision name="plate_pillar_left">
+      <origin xyz="${sensor_plate_main_x_offset-sensor_plate_wall_inset+sensor_plate_pillar_radius} ${sensor_plate_height/2+sensor_plate_pillar_length/2} ${sensor_plate_wall_inset-sensor_plate_pillar_radius}"
+      rpy="${radians(90)} ${radians(90)} 0.0"/>
+      <geometry>
+        <cylinder radius="${sensor_plate_pillar_radius}" length="${sensor_plate_pillar_length}"/>
+      </geometry>
+    </collision>
+    <collision name="plate_pillar_right">
+      <origin xyz="${sensor_plate_main_width+sensor_plate_main_x_offset+sensor_plate_wall_inset-sensor_plate_pillar_radius} ${sensor_plate_height/2+sensor_plate_pillar_length/2} ${sensor_plate_wall_inset-sensor_plate_pillar_radius}"
+      rpy="${radians(90)} ${radians(90)} 0.0"/>
+      <geometry>
+        <cylinder radius="${sensor_plate_pillar_radius}" length="${sensor_plate_pillar_length}"/>
+      </geometry>
+    </collision>
+
+    <collision>
+      <origin xyz="${sensor_plate_main_width/2+sensor_plate_main_x_offset} ${sensor_plate_chin_thickness/2} ${sensor_plate_chin_length/2}"/>
+      <geometry>
+        <box size="${sensor_plate_chin_width} ${sensor_plate_chin_thickness} ${sensor_plate_chin_length}"/>
+      </geometry>
+    </collision>
+
+  </link>
+
+  <joint name="sensor_plate_joint" type="fixed">
+    <origin xyz="0.0484 -0.0375 -0.02385"
+      rpy="1.5708 0 1.5708" />
+    <parent link="frame_link" />
+    <child link="sensor_plate_link" />
+  </joint>
+
+  <xacro:property name="sonar_width" value="0.06" />
+  <xacro:property name="sonar_height" value="0.03" />
+  <xacro:property name="sonar_length" value="0.01" />
+  <xacro:property name="sonar_x_offset" value="-0.001" />
+
+  <xacro:property name="eye_radius" value="0.008" />
+  <xacro:property name="eye_length" value="0.0085" />
+  <xacro:property name="eye_y_offset" value="0.005" />
+
+  <link name="center_sonar_link">
+    <inertial>
+      <!-- Fixed the rotation frame -->
+      <!-- <origin xyz="-0.00016398 -0.00016123 -0.0014079" /> -->
+      <origin xyz="-0.0014079 -0.00016398 0.00016123" rpy="1.5708 0.0 1.5708" />
+      <mass value="0.0092238" />
+      <inertia
+        ixx="4.451E-07"
+        ixy="5.3122E-10"
+        ixz="9.1E-15"
+        iyy="1.9394E-06"
+        iyz="-3.5248E-09"
+        izz="2.2647E-06" />
+    </inertial>
+    <visual>
+      <origin rpy="1.5708 0.0 1.5708" />
+      <geometry>
+        <mesh filename="package://brum_description/meshes/center_sonar_link.STL" />
+      </geometry>
+      <material name="">
+        <!-- <color rgba="0.79216 0.81961 0.93333 1" /> -->
+        <color rgba="0.5 0.6 0.93333 1" />
+      </material>
+    </visual>
+
+    <collision>
+      <origin xyz="${sonar_x_offset} 0.0 0.0" />
+      <geometry>
+        <box size="${sonar_length} ${sonar_width} ${sonar_height}" />
+      </geometry>
+    </collision>
+
+    <collision name="eye_left">
+      <origin xyz="${eye_length+sonar_x_offset} ${eye_radius+eye_y_offset} 0.0"
+        rpy="0.0 ${radians(90)} 0.0 " />
+      <geometry>
+        <cylinder radius="${eye_radius}" length="${eye_length}" />
+      </geometry>
+    </collision>
+    <collision name="eye_right">
+      <origin xyz="${eye_length+sonar_x_offset} ${-eye_radius-eye_y_offset} 0.0"
+        rpy="0.0 ${radians(90)} 0.0 " />
+      <geometry>
+        <cylinder radius="${eye_radius}" length="${eye_length}" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="center_sonar_joint" type="fixed">
+    <origin xyz="0.0377 0.0135 0.00675"
+      rpy="-1.5708 -1.5708 0.0" /> <!-- Fixed the rotation frame -->
+    <parent link="sensor_plate_link" />
+    <child link="center_sonar_link" />
+  </joint>
+</robot>

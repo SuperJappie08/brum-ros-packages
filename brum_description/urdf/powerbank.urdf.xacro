@@ -1,0 +1,36 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <link name="powerbank_link">
+    <inertial>
+      <origin xyz="-6.9389E-18 -0.013 -6.9389E-18" />
+      <mass value="0.13192" />
+      <inertia
+        ixx="3.6752E-05"
+        ixy="-1.034E-21"
+        ixz="-7.2895E-21"
+        iyy="0.00013386"
+        iyz="-2.068E-22"
+        izz="0.00011182" />
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://brum_description/meshes/powerbank_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.29804 0.29804 0.29804 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.0 -0.013 0.0"/>
+      <geometry>
+        <box size="0.0985 0.026 0.0523"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="powerbank_joint" type="fixed">
+    <origin
+      xyz="-0.092881 0 -0.029"
+      rpy="-1.5708 0 -1.5708" />
+    <parent link="frame_link" />
+    <child link="powerbank_link" />
+  </joint>
+</robot>

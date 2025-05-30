@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by
+Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <joint name="base_frame_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="frame_link" />
+  </joint>
+
+  <xacro:property name="base_plate_width" value="0.10" />
+  <xacro:property name="base_plate_length" value="0.175" />
+  <xacro:property name="base_plate_height" value="0.025" />
+  <xacro:property name="base_plate_x_offset" value="0.0325" />
+
+  <xacro:property name="base_plate_front_width" value="0.05" />
+  <xacro:property name="base_plate_front_height" value="0.005" />
+  <xacro:property name="base_plate_front_length" value="0.028" />
+
+  <xacro:property name="base_plate_front_wing_x_offset"
+    value="${base_plate_x_offset + 0.00025}" />
+  <xacro:property name="base_plate_front_wing_y_offset" value="0.014" />
+  <xacro:property name="base_plate_front_wing_width"
+    value="${base_plate_front_width + 0.002}" />
+  <xacro:property name="base_plate_front_wing_angle" value="22.5" />
+  <xacro:property name="base_plate_front_wing_length" value="0.0095" />
+
+  <xacro:property name="motor_width" value="0.03" />
+  <xacro:property name="motor_height" value="0.031" />
+  <xacro:property name="motor_length" value="0.071" />
+  <xacro:property name="motor_x_offset" value="0.011" />
+
+  <xacro:property name="rpi_width" value="0.055" />
+  <xacro:property name="rpi_length" value="0.09" />
+  <xacro:property name="rpi_height" value="0.04" />
+
+  <xacro:property name="caster_support_width" value="0.06"/>
+  <xacro:property name="caster_support_height" value="0.032"/>
+  <xacro:property name="caster_support_length" value="0.025"/>
+
+  <xacro:property name="base_plate_front_wing_x"
+    value="${base_plate_front_wing_x_offset+base_plate_front_length*asin(radians(base_plate_front_wing_angle))}" />
+  <xacro:property name="base_plate_front_wing_y"
+    value="${base_plate_front_length*acos(radians(base_plate_front_wing_angle))+base_plate_front_wing_y_offset}" />
+
+  <link name="frame_link">
+    <inertial>
+      <origin xyz="-0.051432 -0.00091594 0.0079105" />
+      <mass value="0.26172" />
+      <inertia
+        ixx="9.478E-05"
+        ixy="1.0036E-07"
+        ixz="-2.7061E-06"
+        iyy="0.00027002"
+        iyz="5.2214E-09"
+        izz="0.00034733" />
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://brum_description/meshes/frame_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+
+    <collision name="base_plate">
+      <origin
+        xyz="${-base_plate_length/2+base_plate_x_offset} 0.0 ${base_plate_height/2}" />
+      <geometry>
+        <box size="${base_plate_length} ${base_plate_width} ${base_plate_height}" />
+      </geometry>
+    </collision>
+    <collision name="base_plate_front_middle">
+      <origin
+        xyz="${base_plate_x_offset+base_plate_front_length/2} 0.0 ${base_plate_front_height/2}" />
+      <geometry>
+        <box
+          size="${base_plate_front_length} ${base_plate_front_width} ${base_plate_front_height}" />
+      </geometry>
+    </collision>
+
+    <collision name="base_plate_front_left">
+      <origin
+        xyz="${base_plate_front_wing_x} ${base_plate_front_wing_y} ${base_plate_front_height/2}"
+        rpy="0.0 0.0 ${radians(base_plate_front_wing_angle)}" />
+      <geometry>
+        <box
+          size="${base_plate_front_wing_length} ${base_plate_front_wing_width} ${base_plate_front_height}" />
+      </geometry>
+    </collision>
+    <collision name="base_plate_front_right">
+      <origin
+        xyz="${base_plate_front_wing_x} ${-base_plate_front_wing_y} ${base_plate_front_height/2}"
+        rpy="0.0 0.0 ${-radians(base_plate_front_wing_angle)}" />
+      <geometry>
+        <box
+          size="${base_plate_front_wing_length} ${base_plate_front_wing_width} ${base_plate_front_height}" />
+      </geometry>
+    </collision>
+
+    <collision name="motor_left">
+      <origin
+        xyz="${motor_x_offset-motor_length/2} ${base_plate_width/2-motor_width/2} ${-motor_height/2}" />
+      <geometry>
+        <box size="${motor_length} ${motor_width} ${motor_height}" />
+      </geometry>
+    </collision>
+    
+    <collision name="motor_right">
+      <origin
+        xyz="${motor_x_offset-motor_length/2} ${motor_width/2-base_plate_width/2} ${-motor_height/2}" />
+      <geometry>
+        <box size="${motor_length} ${motor_width} ${motor_height}" />
+      </geometry>
+    </collision>
+
+    <collision name="raspberry">
+      <origin
+        xyz="${base_plate_x_offset-base_plate_length+rpi_length/2} 0.0 ${base_plate_height+rpi_height/2}" />
+      <geometry>
+        <box size="${rpi_length} ${rpi_width} ${rpi_height}" />
+      </geometry>
+    </collision>
+
+    <collision name="caster_support">
+      <origin xyz="${base_plate_x_offset-base_plate_length+caster_support_length/2} 0.0 ${-caster_support_height/2}"/>
+      <geometry>
+        <box size="${caster_support_length} ${caster_support_width} ${caster_support_height}"/>
+      </geometry>
+    </collision>
+  </link>
+</robot>

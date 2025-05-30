@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:property name="mount_width" value="0.0525"/>
+  <xacro:property name="mount_length" value="0.0135"/>
+  <xacro:property name="mount_height" value="0.032"/>
+  <xacro:property name="mount_l_offset" value="0.00475"/>
+
+  <xacro:property name="mount_bump_width" value="0.0145"/>
+  <xacro:property name="mount_bump_height" value="0.006"/>
+
+  <link name="camera_mount_link">
+    <inertial>
+      <origin xyz="0.021441 -0.01339 -0.0052887" />
+      <mass value="0.0099197" />
+      <inertia
+        ixx="9.6418E-07"
+        ixy="3.9818E-07"
+        ixz="1.3937E-07"
+        iyy="2.1227E-06"
+        iyz="-8.2985E-08"
+        izz="2.9255E-06" />
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://brum_description/meshes/camera_mount_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.77647 0.75686 0.73725 1" />
+      </material>
+    </visual>
+    <!-- <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://brum_description/meshes/camera_mount_link.STL" />
+      </geometry>
+    </collision> -->
+    <collision>
+      <origin xyz="${mount_width/2} ${-mount_height/2} ${mount_l_offset-mount_length/2}" rpy="0.0 1.5708 1.5708"/>
+      <geometry>
+        <box size="${mount_length} ${mount_width} ${mount_height}"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="${mount_bump_width/2} ${mount_bump_height/2} ${mount_l_offset-mount_length/2}" rpy="0.0 1.5708 1.5708"/>
+      <geometry>
+        <box size="${mount_length} ${mount_bump_width} ${mount_bump_height}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="camera_mount_joint" type="fixed">
+    <origin
+      xyz="0.0534488559945167 0.0262499999959915 0.0349999999999993"
+      rpy="1.5707963267949 0 -1.5707963267949" />
+    <parent link="frame_link" />
+    <child link="camera_mount_link" />
+  </joint>
+
+  <xacro:property name="camera_main_width" value="0.03"/>
+  <xacro:property name="camera_plate_width" value="${camera_main_width + 0.0199}"/>
+  <xacro:property name="camera_main_thickness"  value="0.0095"/>
+  <xacro:property name="camera_plate_thickness" value="0.0030"/>
+
+  <link name="camera_link">
+    <inertial>
+      <!-- <origin xyz="-1.289E-12 -0.0056758 4.0787E-12"/> -->
+      <origin xyz="0.0056758 -1.289E-12 4.0787E-12" rpy="${pi} 0 -1.5708" />
+      <mass
+        value="0.012179" />
+      <inertia
+        ixx="1.0523E-06"
+        ixy="5.8674E-21"
+        ixz="-9.7186E-13"
+        iyy="2.1867E-06"
+        iyz="-1.9335E-23"
+        izz="1.4643E-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="${pi} 0 -1.5708" />
+      <geometry>
+        <mesh filename="package://brum_description/meshes/camera_link.STL" />
+      </geometry>
+      <material name="camera_color">
+        <color rgba="0.10196 0.10196 0.10196 1" />
+      </material>
+    </visual>
+
+    <collision name="camera_main">
+      <origin xyz="${camera_main_thickness/2+camera_plate_thickness} 0.0 0.0"/>
+      <geometry>
+        <box size="${camera_main_thickness} ${camera_main_width} ${camera_main_width}"/>
+      </geometry>
+    </collision>
+    <collision>
+      <origin xyz="${camera_plate_thickness/2} 0.0 0.0"/>
+      <geometry>
+        <box size="${camera_plate_thickness} ${camera_plate_width} ${camera_main_width}"/>
+      </geometry>  
+    </collision>
+  </link>
+
+  <joint name="camera_joint" type="fixed">
+    <!-- <origin xyz="0.02625 -0.01777 -0.00875" rpy="1.5708 0 0" /> -->
+    <origin xyz="0.02625 -0.01777 -0.00875" rpy="0 1.5708 1.5708" />
+    <parent link="camera_mount_link" />
+    <child link="camera_link" />
+  </joint>
+
+  <link name="camera_link_optical"/>
+  <joint name="camera_optical_joint" type="fixed">
+    <parent link="camera_link"/>
+    <child link="camera_link_optical"/>
+    <origin rpy="${radians(-90)} 0.0 ${radians(-90)}"/>
+  </joint>
+</robot>

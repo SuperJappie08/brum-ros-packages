@@ -1,0 +1,40 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:property name="ball_radius" value="0.0075"/>
+  <xacro:property name="ball_offset" value="0.005"/>
+
+  <link name="caster_holder_link">
+    <inertial>
+      <origin xyz="9.9226E-16 0.0068784 -3.4694E-18" />
+      <mass value="0.0062086" />
+      <inertia
+        ixx="3.5051E-07"
+        ixy="9.6652E-23"
+        ixz="4.0748E-16"
+        iyy="5.7413E-07"
+        iyz="-3.1987E-23"
+        izz="6.0194E-07" />
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://brum_description/meshes/caster_link.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0.0 ${ball_radius + ball_offset} 0.0"/>
+      <geometry>
+        <sphere radius="${ball_radius}"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="caster_holder_joint" type="fixed">
+    <origin xyz="-0.128 0 -0.032" rpy="-1.5708 0 -1.5708" />
+    <parent link="frame_link" />
+    <child link="caster_holder_link" />
+  </joint>
+
+  <!-- FIXME Add roller caster_ball link-->
+</robot>
