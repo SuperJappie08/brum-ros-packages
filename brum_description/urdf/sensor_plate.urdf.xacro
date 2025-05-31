@@ -4,13 +4,16 @@
   <xacro:property name="sensor_plate_main_width" value="0.10" />
   <xacro:property name="sensor_plate_main_x_offset" value="-0.0125" />
 
-  <xacro:property name="sensor_plate_wall_inset" value="-0.002"/>
-  <xacro:property name="sensor_plate_pillar_radius" value="0.002"/>
-  <xacro:property name="sensor_plate_pillar_length" value="0.02"/>
+  <xacro:property name="sensor_plate_wall_inset" value="-0.002" />
+  <xacro:property name="sensor_plate_pillar_radius" value="0.002" />
+  <xacro:property name="sensor_plate_pillar_length" value="0.02" />
 
-  <xacro:property name="sensor_plate_chin_thickness" value="0.003"/>
-  <xacro:property name="sensor_plate_chin_length" value="0.012"/>
-  <xacro:property name="sensor_plate_chin_width" value="0.045"/>
+  <xacro:property name="sensor_plate_chin_thickness" value="0.003" />
+  <xacro:property name="sensor_plate_chin_length" value="0.012" />
+  <xacro:property name="sensor_plate_chin_width" value="0.045" />
+
+  <xacro:property name="center_sonar_spread_angle_horizontal" value="${radians(21)}" />
+  <xacro:property name="center_sonar_spread_angle_vertical" value="${radians(4)}" />
 
 
   <link name="sensor_plate_link">
@@ -35,31 +38,36 @@
     </visual>
 
     <collision name="plate_main">
-      <origin xyz="${sensor_plate_main_width/2+sensor_plate_main_x_offset} 0.0 ${-sensor_plate_main_length/2}"/>
+      <origin
+        xyz="${sensor_plate_main_width/2+sensor_plate_main_x_offset} 0.0 ${-sensor_plate_main_length/2}" />
       <geometry>
         <box size="${sensor_plate_main_width} ${sensor_plate_height} ${sensor_plate_main_length}" />
       </geometry>
     </collision>
 
     <collision name="plate_pillar_left">
-      <origin xyz="${sensor_plate_main_x_offset-sensor_plate_wall_inset+sensor_plate_pillar_radius} ${sensor_plate_height/2+sensor_plate_pillar_length/2} ${sensor_plate_wall_inset-sensor_plate_pillar_radius}"
-      rpy="${radians(90)} ${radians(90)} 0.0"/>
+      <origin
+        xyz="${sensor_plate_main_x_offset-sensor_plate_wall_inset+sensor_plate_pillar_radius} ${sensor_plate_height/2+sensor_plate_pillar_length/2} ${sensor_plate_wall_inset-sensor_plate_pillar_radius}"
+        rpy="${radians(90)} ${radians(90)} 0.0" />
       <geometry>
-        <cylinder radius="${sensor_plate_pillar_radius}" length="${sensor_plate_pillar_length}"/>
+        <cylinder radius="${sensor_plate_pillar_radius}" length="${sensor_plate_pillar_length}" />
       </geometry>
     </collision>
     <collision name="plate_pillar_right">
-      <origin xyz="${sensor_plate_main_width+sensor_plate_main_x_offset+sensor_plate_wall_inset-sensor_plate_pillar_radius} ${sensor_plate_height/2+sensor_plate_pillar_length/2} ${sensor_plate_wall_inset-sensor_plate_pillar_radius}"
-      rpy="${radians(90)} ${radians(90)} 0.0"/>
+      <origin
+        xyz="${sensor_plate_main_width+sensor_plate_main_x_offset+sensor_plate_wall_inset-sensor_plate_pillar_radius} ${sensor_plate_height/2+sensor_plate_pillar_length/2} ${sensor_plate_wall_inset-sensor_plate_pillar_radius}"
+        rpy="${radians(90)} ${radians(90)} 0.0" />
       <geometry>
-        <cylinder radius="${sensor_plate_pillar_radius}" length="${sensor_plate_pillar_length}"/>
+        <cylinder radius="${sensor_plate_pillar_radius}" length="${sensor_plate_pillar_length}" />
       </geometry>
     </collision>
 
     <collision>
-      <origin xyz="${sensor_plate_main_width/2+sensor_plate_main_x_offset} ${sensor_plate_chin_thickness/2} ${sensor_plate_chin_length/2}"/>
+      <origin
+        xyz="${sensor_plate_main_width/2+sensor_plate_main_x_offset} ${sensor_plate_chin_thickness/2} ${sensor_plate_chin_length/2}" />
       <geometry>
-        <box size="${sensor_plate_chin_width} ${sensor_plate_chin_thickness} ${sensor_plate_chin_length}"/>
+        <box
+          size="${sensor_plate_chin_width} ${sensor_plate_chin_thickness} ${sensor_plate_chin_length}" />
       </geometry>
     </collision>
 
@@ -135,4 +143,51 @@
     <parent link="sensor_plate_link" />
     <child link="center_sonar_link" />
   </joint>
+
+  <xacro:if value="${mode.startswith('gz-sim')}">
+    <gazebo reference="center_sonar_link">
+      <sensor name='sonar' type='gpu_lidar'>
+        <!-- <pose relative_to='brum/center_sonar_link'>0 0 0 0 0 0</pose> -->
+        <!-- FIXME MAKE RELATIVE TO NAME  -->
+        <topic>/model/brum/sonar_scan</topic>
+        <!-- <frame_id>brum/center_sonar_link</frame_id> -->
+        <update_rate>20</update_rate>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>25</samples>
+              <resolution>1</resolution>
+              <min_angle>${-center_sonar_spread_angle_horizontal/2}</min_angle>
+              <max_angle>${center_sonar_spread_angle_horizontal/2}</max_angle>
+            </horizontal>
+            <vertical>
+              <samples>25</samples>
+              <resolution>1</resolution>
+              <min_angle>${-center_sonar_spread_angle_vertical/3}</min_angle>
+              <max_angle>${center_sonar_spread_angle_vertical/3}</max_angle>
+            </vertical>
+          </scan>
+          <range>
+            <min>0.02</min>
+            <max>4.0</max>
+            <resolution>0.03</resolution>
+          </range>
+          <!-- https://forum.arduino.cc/t/hc-sr04-tests-on-accuracy-precision-and-resolution-of-ultrasonic-measurement/236505 -->
+          <noise>
+            <mean>0.07</mean>
+            <stddev>0.003</stddev>
+          </noise>
+        </ray>
+
+        <always_on>1</always_on>
+        <visualize>true</visualize>
+      </sensor>
+    </gazebo>
+
+    <link name="base_link/sonar" />
+    <joint name="sonar_joint" type="fixed">
+      <parent link="center_sonar_link" />
+      <child link="base_link/sonar" />
+    </joint>
+  </xacro:if>
 </robot>

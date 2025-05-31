@@ -1,6 +1,6 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-  <xacro:property name="ball_radius" value="0.0075"/>
-  <xacro:property name="ball_offset" value="0.005"/>
+  <xacro:property name="ball_radius" value="0.0075" />
+  <xacro:property name="ball_offset" value="0.005" />
 
   <link name="caster_holder_link">
     <inertial>
@@ -23,9 +23,9 @@
       </material>
     </visual>
     <collision>
-      <origin xyz="0.0 ${ball_radius + ball_offset} 0.0"/>
+      <origin xyz="0.0 ${ball_radius + ball_offset} 0.0" />
       <geometry>
-        <sphere radius="${ball_radius}"/>
+        <sphere radius="${ball_radius}" />
       </geometry>
     </collision>
   </link>
@@ -37,4 +37,10 @@
   </joint>
 
   <!-- FIXME Add roller caster_ball link-->
+  <xacro:if value="${mode.startswith('gz-sim')}">
+    <gazebo reference="caster_holder_link">
+      <mu1>0.05</mu1>
+      <mu2>0.05</mu2>
+    </gazebo>
+  </xacro:if>
 </robot>

@@ -1,13 +1,37 @@
 <launch>
-  <arg name="use_lidar" default="true" />
-  <arg name="use_camera" default="true" />
-  <arg name="use_powerbank" default="true" />
-  <arg name="use_sensor_plate" default="true" />
+  <arg name="use_lidar" default="True" />
+  <arg name="use_camera" default="True" />
+  <arg name="use_powerbank" default="True" />
+  <arg name="use_sensor_plate" default="True" />
+
+  <arg name="frame_prefix" default="" />
+
+  <arg name="mode">
+    <choice value="real" />
+    <choice value="gz-sim-diff-drive-plugin" />
+  </arg>
+
+  <arg name="container_name" default="brum_container"
+    description="Name of container that nodes will load in if use composition" />
+  <arg name="use_composition" default="False" description="Use composed bringup if True" />
 
   <let name="brum_xacro_options"
     value="use_lidar:=$(var use_lidar) use_camera:=$(var use_camera) use_powerbank:=$(var use_powerbank) use_sensor_plate:=$(var use_sensor_plate)" />
-  <node pkg="robot_state_publisher" exec="robot_state_publisher">
-    <param name="robot_description"
-      value="$(command 'xacro $(find-pkg-share brum_description)/urdf/brum.urdf.xacro $(var brum_xacro_options)')" />
+
+  <let name="robot_description"
+    value="$(command 'xacro $(find-pkg-share brum_description)/urdf/brum.urdf.xacro mode:=$(var mode) $(var brum_xacro_options)')" />
+
+  <node pkg="robot_state_publisher" exec="robot_state_publisher" unless="$(var use_composition)">
+    <param name="frame_prefix" value="$(var frame_prefix)" />
+    <param name="robot_description" value="$(var robot_description)" />
   </node>
+
+  <load_composable_node target="$(var container_name)" if="$(var use_composition)">
+    <composable_node pkg="robot_state_publisher" name="robot_state_publisher" plugin="robot_state_publisher::RobotStatePublisher">
+      <param name="frame_prefix" value="$(var frame_prefix)" />
+      <param name="robot_description" value="$(var robot_description)" />
+
+      <extra_arg name="use_intra_process_comms" value="True" />
+    </composable_node>
+  </load_composable_node>
 </launch>

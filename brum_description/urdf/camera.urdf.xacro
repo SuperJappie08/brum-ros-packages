@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:property name="mount_width" value="0.0525"/>
-  <xacro:property name="mount_length" value="0.0135"/>
-  <xacro:property name="mount_height" value="0.032"/>
-  <xacro:property name="mount_l_offset" value="0.00475"/>
+  <xacro:property name="mount_width" value="0.0525" />
+  <xacro:property name="mount_length" value="0.0135" />
+  <xacro:property name="mount_height" value="0.032" />
+  <xacro:property name="mount_l_offset" value="0.00475" />
 
-  <xacro:property name="mount_bump_width" value="0.0145"/>
-  <xacro:property name="mount_bump_height" value="0.006"/>
+  <xacro:property name="mount_bump_width" value="0.0145" />
+  <xacro:property name="mount_bump_height" value="0.006" />
 
   <link name="camera_mount_link">
     <inertial>
@@ -38,15 +38,17 @@
       </geometry>
     </collision> -->
     <collision>
-      <origin xyz="${mount_width/2} ${-mount_height/2} ${mount_l_offset-mount_length/2}" rpy="0.0 1.5708 1.5708"/>
+      <origin xyz="${mount_width/2} ${-mount_height/2} ${mount_l_offset-mount_length/2}"
+        rpy="0.0 1.5708 1.5708" />
       <geometry>
-        <box size="${mount_length} ${mount_width} ${mount_height}"/>
+        <box size="${mount_length} ${mount_width} ${mount_height}" />
       </geometry>
     </collision>
     <collision>
-      <origin xyz="${mount_bump_width/2} ${mount_bump_height/2} ${mount_l_offset-mount_length/2}" rpy="0.0 1.5708 1.5708"/>
+      <origin xyz="${mount_bump_width/2} ${mount_bump_height/2} ${mount_l_offset-mount_length/2}"
+        rpy="0.0 1.5708 1.5708" />
       <geometry>
-        <box size="${mount_length} ${mount_bump_width} ${mount_bump_height}"/>
+        <box size="${mount_length} ${mount_bump_width} ${mount_bump_height}" />
       </geometry>
     </collision>
   </link>
@@ -59,10 +61,12 @@
     <child link="camera_mount_link" />
   </joint>
 
-  <xacro:property name="camera_main_width" value="0.03"/>
-  <xacro:property name="camera_plate_width" value="${camera_main_width + 0.0199}"/>
-  <xacro:property name="camera_main_thickness"  value="0.0095"/>
-  <xacro:property name="camera_plate_thickness" value="0.0030"/>
+  <xacro:property name="camera_main_width" value="0.03" />
+  <xacro:property name="camera_plate_width" value="${camera_main_width + 0.0199}" />
+  <xacro:property name="camera_main_thickness" value="0.0095" />
+  <xacro:property name="camera_plate_thickness" value="0.0030" />
+
+  <!-- TODO Maybe rename too center_camera and center_camera_optical-->
 
   <link name="camera_link">
     <inertial>
@@ -89,16 +93,16 @@
     </visual>
 
     <collision name="camera_main">
-      <origin xyz="${camera_main_thickness/2+camera_plate_thickness} 0.0 0.0"/>
+      <origin xyz="${camera_main_thickness/2+camera_plate_thickness} 0.0 0.0" />
       <geometry>
-        <box size="${camera_main_thickness} ${camera_main_width} ${camera_main_width}"/>
+        <box size="${camera_main_thickness} ${camera_main_width} ${camera_main_width}" />
       </geometry>
     </collision>
     <collision>
-      <origin xyz="${camera_plate_thickness/2} 0.0 0.0"/>
+      <origin xyz="${camera_plate_thickness/2} 0.0 0.0" />
       <geometry>
-        <box size="${camera_plate_thickness} ${camera_plate_width} ${camera_main_width}"/>
-      </geometry>  
+        <box size="${camera_plate_thickness} ${camera_plate_width} ${camera_main_width}" />
+      </geometry>
     </collision>
   </link>
 
@@ -109,10 +113,35 @@
     <child link="camera_link" />
   </joint>
 
-  <link name="camera_link_optical"/>
+  <link name="camera_link_optical" />
   <joint name="camera_optical_joint" type="fixed">
-    <parent link="camera_link"/>
-    <child link="camera_link_optical"/>
-    <origin rpy="${radians(-90)} 0.0 ${radians(-90)}"/>
+    <parent link="camera_link" />
+    <child link="camera_link_optical" />
+    <origin rpy="${radians(-90)} 0.0 ${radians(-90)}" />
   </joint>
+
+  <xacro:if value="${mode.startswith('gz-sim')}">
+    <gazebo reference="camera_link">
+      <!-- FIXME Camera configuration -->
+      <sensor name="center_camera" type="camera">
+        <camera>
+          <horizontal_fov>1.047</horizontal_fov>
+        <image>
+          <width>320</width>
+          <height>240</height>
+        </image>
+        <clip>
+          <near>0.1</near>
+          <far>100</far>
+        </clip>
+        <optical_frame_id>camera_link_optical</optical_frame_id>
+        <camera_info_topic>center_camera/camera_info</camera_info_topic>
+      </camera>
+      <always_on>1</always_on>
+      <update_rate>25</update_rate>
+      <visualize>true</visualize>
+      <topic>center_camera/image</topic>
+    </sensor>
+  </gazebo>
+  </xacro:if>
 </robot>

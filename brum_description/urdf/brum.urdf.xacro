@@ -5,6 +5,9 @@
   <xacro:arg name="use_camera" default="true" />
   <xacro:arg name="use_powerbank" default="true" />
   <xacro:arg name="use_sensor_plate" default="true" />
+  <xacro:arg name="mode" default="real" />
+
+  <xacro:property name="mode" value="$(arg mode)" />
 
   <link name="base_link" />
 
@@ -18,7 +21,7 @@
 
   <xacro:include filename="$(find brum_description)/urdf/frame.urdf.xacro" ns="frame" />
 
-  <xacro:include filename="$(find brum_description)/urdf/wheels.urdf.xacro" />
+  <xacro:include filename="$(find brum_description)/urdf/wheels.urdf.xacro" ns="wheels" />
   <xacro:include filename="$(find brum_description)/urdf/caster.urdf.xacro" ns="caster" />
 
   <!-- <xacro:include
@@ -47,5 +50,15 @@
 
   <xacro:if value="$(arg use_lidar)">
     <xacro:include filename="$(find brum_description)/urdf/lidar.urdf.xacro" />
+  </xacro:if>
+
+  <xacro:if value="${mode == 'gz-sim-diff-drive-plugin'}">
+    <gazebo>
+      <plugin filename="gz-sim-joint-state-publisher-system"
+        name="gz::sim::systems::JointStatePublisher">
+        <!-- FIXME Do not hardcode topic name -->
+        <topic>/model/brum/joint_state</topic>
+      </plugin>
+    </gazebo>
   </xacro:if>
 </robot>

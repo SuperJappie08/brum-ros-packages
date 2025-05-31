@@ -16,14 +16,17 @@ for brum_description robot</p>
   <exec_depend>launch</exec_depend>
   <exec_depend>launch_ros</exec_depend>
   <exec_depend>launch_xml</exec_depend>
+  <exec_depend>xacro</exec_depend>
   
   <exec_depend>robot_state_publisher</exec_depend>
   <!-- <depend>rviz</depend> -->
   <!-- <depend>joint_state_publisher_gui</depend> -->
-  <!-- <depend>gazebo</depend> -->
   
   <export>
     <build_type>ament_cmake</build_type>
+
+    <!-- This allows gazebo to find the meshes -->
+    <gazebo_ros gazebo_model_path="${prefix}/../"/>
     <architecture_independent />
   </export>
 </package>
