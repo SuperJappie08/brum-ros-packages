@@ -9,6 +9,7 @@
   <arg name="mode">
     <choice value="real" />
     <choice value="gz-sim-diff-drive-plugin" />
+    <choice value="gz-sim-velocity-control-plugin" />
   </arg>
 
   <arg name="container_name" default="brum_container"

@@ -49,10 +49,10 @@
   </xacro:if>
 
   <xacro:if value="$(arg use_lidar)">
-    <xacro:include filename="$(find brum_description)/urdf/lidar.urdf.xacro" />
+    <xacro:include filename="$(find brum_description)/urdf/lidar.urdf.xacro" ns="lidar" />
   </xacro:if>
 
-  <xacro:if value="${mode == 'gz-sim-diff-drive-plugin'}">
+  <xacro:if value="${mode.startswith('gz-sim') and mode.endswith('plugin')}">
     <gazebo>
       <plugin filename="gz-sim-joint-state-publisher-system"
         name="gz::sim::systems::JointStatePublisher">
