@@ -6,7 +6,7 @@
   <!-- TODO Maybe scale speeds and torque back to mimic real limitations better -->
 
   <!-- 160 RPM @ 6V (https://wiki.dfrobot.com/Micro_DC_Motor_with_Encoder-SJ01_SKU__FIT0450) -->
-  <xacro:property name="max_rotational_velocity_wheel" value="${(160*60)*pi*2}" />
+  <xacro:property name="max_rotational_velocity_wheel" value="${(160/60)*pi*2}" />
   <xacro:property name="wheel_separation" value="${0.158-wheel_width}" />
 
   <!-- 0.8kgf.cm Max Stall torque
@@ -91,6 +91,17 @@
     <limit effort="${max_wheel_torque}" velocity="${max_rotational_velocity_wheel}" />
   </joint>
 
+  <xacro:if value="${mode == 'real'}">
+    <xacro:include filename="$(find mirte_modular_hardware)/urdf/motor.ros2_control.xacro" />
+    <xacro:include filename="$(find mirte_modular_hardware)/urdf/encoder.ros2_control.xacro" />
+
+    <xacro:mirte_modular_hardware_motor hw_device_name="left" joint_name="left_wheel_joint" max_motor_speed="${max_rotational_velocity_wheel}" />
+    <xacro:mirte_modular_hardware_motor hw_device_name="right" joint_name="right_wheel_joint" max_motor_speed="${max_rotational_velocity_wheel}" />
+
+    <xacro:mirte_modular_hardware_encoder hw_device_name="left" joint_name="left_wheel_joint" ticks_per_rotation="960" />
+    <xacro:mirte_modular_hardware_encoder hw_device_name="right" joint_name="right_wheel_joint" ticks_per_rotation="960" />
+  </xacro:if>
+
   <xacro:if value="${mode == 'gz-sim-diff-drive-plugin'}">
     <gazebo>
       <plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
@@ -112,11 +123,44 @@
   <xacro:if value="${mode == 'gz-sim-velocity-control-plugin'}">
     <gazebo>
       <plugin filename="gz-sim-velocity-control-system" name="gz::sim::systems::VelocityControl" />
-      <!-- TODO MAKE MORE FLEXIBLE -->
+      <!-- TODO:MAKE MORE FLEXIBLE -->
       <plugin filename="gz-sim-odometry-publisher-system" name="gz::sim::systems::OdometryPublisher">
         <robot_base_frame>brum/base_link</robot_base_frame>
         <odom_publish_frequency>50</odom_publish_frequency>
         <tf_topic>/model/brum/tf</tf_topic>
+      </plugin>
+    </gazebo>
+  </xacro:if>
+
+  <xacro:if value="${mode == 'gz-sim-ros2-control'}">
+    <ros2_control name="GazeboSystem" type="system">
+      <hardware>
+        <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+      </hardware>
+      <joint name="left_wheel_joint">
+        <command_interface name="velocity">
+          <param name="enable_limits">True</param>
+          <param name="max">${max_rotational_velocity_wheel}</param>
+          <param name="min">${-max_rotational_velocity_wheel}</param>
+        </command_interface>
+        <state_interface name="position" />
+        <state_interface name="velocity" />
+      </joint>
+      <joint name="right_wheel_joint">
+        <command_interface name="velocity">
+          <param name="enable_limits">True</param>
+          <param name="max">${max_rotational_velocity_wheel}</param>
+          <param name="min">${-max_rotational_velocity_wheel}</param>
+        </command_interface>
+        <state_interface name="position" />
+        <state_interface name="velocity" />
+      </joint>
+    </ros2_control>
+
+    <gazebo>
+      <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+        <parameters>$(find brum_control)/config/brum_controllers.yaml</parameters>
+        <!-- TODO:OPTIONAL <ros><namespace>...</namespace</ros> -->
       </plugin>
     </gazebo>
   </xacro:if>

@@ -134,7 +134,8 @@
           <near>0.1</near>
           <far>100</far>
         </clip>
-        <optical_frame_id>camera_link_optical</optical_frame_id>
+        <!-- FIXME NAMESPACE -->
+        <optical_frame_id>brum/camera_link_optical</optical_frame_id>
         <camera_info_topic>center_camera/camera_info</camera_info_topic>
       </camera>
       <always_on>1</always_on>

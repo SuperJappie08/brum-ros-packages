@@ -7,9 +7,11 @@
   <arg name="frame_prefix" default="" />
 
   <arg name="mode">
+    <choice value="none" />
     <choice value="real" />
     <choice value="gz-sim-diff-drive-plugin" />
     <choice value="gz-sim-velocity-control-plugin" />
+    <choice value="gz-sim-ros2-control" />
   </arg>
 
   <arg name="container_name" default="brum_container"
