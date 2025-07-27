@@ -18,11 +18,22 @@
     description="Name of container that nodes will load in if use composition" />
   <arg name="use_composition" default="False" description="Use composed bringup if True" />
 
+  <let name="model_name"
+    value="$(if $(not-equals $(var frame_prefix) '') $(var frame_prefix) 'brum/')" />
+  <let name="model_name" value="$(eval '\'$(var model_name)\'[:-1]')" />
+
+  <let name="brum_xacro_options" value="$(var brum_xacro_options '') mode:=$(var mode)" />
+  <let name="brum_xacro_options" value="$(var brum_xacro_options '') model_name:=$(var model_name)" />
+
+  <let name="brum_xacro_options" value="$(var brum_xacro_options '') use_lidar:=$(var use_lidar)" />
+  <let name="brum_xacro_options" value="$(var brum_xacro_options '') use_camera:=$(var use_camera)" />
   <let name="brum_xacro_options"
-    value="use_lidar:=$(var use_lidar) use_camera:=$(var use_camera) use_powerbank:=$(var use_powerbank) use_sensor_plate:=$(var use_sensor_plate)" />
+    value="$(var brum_xacro_options '') use_powerbank:=$(var use_powerbank)" />
+  <let name="brum_xacro_options"
+    value="$(var brum_xacro_options '') use_sensor_plate:=$(var use_sensor_plate)" />
 
   <let name="robot_description"
-    value="$(command 'xacro $(find-pkg-share brum_description)/urdf/brum.urdf.xacro mode:=$(var mode) $(var brum_xacro_options)')" />
+    value="$(command 'xacro $(find-pkg-share brum_description)/urdf/brum.urdf.xacro $(var brum_xacro_options)')" />
 
   <node pkg="robot_state_publisher" exec="robot_state_publisher" unless="$(var use_composition)">
     <param name="frame_prefix" value="$(var frame_prefix)" />
@@ -30,7 +41,8 @@
   </node>
 
   <load_composable_node target="$(var container_name)" if="$(var use_composition)">
-    <composable_node pkg="robot_state_publisher" name="robot_state_publisher" plugin="robot_state_publisher::RobotStatePublisher">
+    <composable_node pkg="robot_state_publisher" name="robot_state_publisher"
+      plugin="robot_state_publisher::RobotStatePublisher">
       <param name="frame_prefix" value="$(var frame_prefix)" />
       <param name="robot_description" value="$(var robot_description)" />
 

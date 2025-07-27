@@ -63,7 +63,7 @@
       <sensor name='gpu_lidar' type='gpu_lidar'>
         <!-- <pose relative_to='brum/laser_link'>0 0 0 0 0 0</pose> -->
         <!-- FIXME MAKE RELATIVE TO NAME  -->
-        <topic>/model/brum/laser_scan</topic>
+        <topic>/model/$(arg model_name)/laser_scan</topic>
         <!-- <frame_id>brum/laser_link</frame_id> -->
         <update_rate>10</update_rate>
         <ray>

@@ -148,9 +148,8 @@
     <gazebo reference="center_sonar_link">
       <sensor name='sonar' type='gpu_lidar'>
         <!-- <pose relative_to='brum/center_sonar_link'>0 0 0 0 0 0</pose> -->
-        <!-- FIXME MAKE RELATIVE TO NAME  -->
-        <topic>/model/brum/sonar_scan</topic>
-        <!-- <frame_id>brum/center_sonar_link</frame_id> -->
+        <topic>/model/$(arg model_name)/sonar_scan</topic>
+        <!-- <frame_id>$(arg model_name)/center_sonar_link</frame_id> -->
         <update_rate>20</update_rate>
         <ray>
           <scan>

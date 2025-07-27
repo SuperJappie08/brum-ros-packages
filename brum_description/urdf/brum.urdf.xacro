@@ -7,6 +7,9 @@
   <xacro:arg name="use_sensor_plate" default="true" />
   <xacro:arg name="mode" default="real" />
 
+  <!-- A model name for multi-robot simulation -->
+  <xacro:arg name="model_name" default="brum" />
+
   <xacro:property name="mode" value="$(arg mode)" />
 
   <link name="base_link" />
@@ -57,7 +60,7 @@
       <plugin filename="gz-sim-joint-state-publisher-system"
         name="gz::sim::systems::JointStatePublisher">
         <!-- FIXME Do not hardcode topic name -->
-        <topic>/model/brum/joint_state</topic>
+        <topic>/model/$(arg model_name)/joint_state</topic>
       </plugin>
     </gazebo>
   </xacro:if>
