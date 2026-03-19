@@ -17,13 +17,13 @@ for brum_description robot</p>
   <exec_depend>launch_ros</exec_depend>
   <exec_depend>launch_xml</exec_depend>
   <exec_depend>xacro</exec_depend>
-  
+
   <exec_depend>robot_state_publisher</exec_depend>
   <!-- <depend>rviz</depend> -->
   <!-- <depend>joint_state_publisher_gui</depend> -->
 
   <!-- TODO: EXEC DEPEND on mirte_modular_hardware? -->
-  
+
   <export>
     <build_type>ament_cmake</build_type>
 

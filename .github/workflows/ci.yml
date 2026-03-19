@@ -1,0 +1,67 @@
+name: CI mirte-thesis-control
+
+on: [push, pull_request]
+
+jobs:
+  ament_lint:
+    runs-on: ubuntu-latest
+    container:
+      image: rostooling/setup-ros-docker:ubuntu-${{ matrix.ubuntu }}-ros-${{ matrix.ros_distro }}-ros-base-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        package:
+          - brum_bringup
+          - brum_camera
+          - brum_control
+          - brum_description
+          - brum_navigation
+        linter:
+          - copyright
+          - flake8
+          - lint_cmake
+          - pep257
+          - xmllint
+        ros_distro: [jazzy]
+        include:
+          - ros_distro: jazzy
+            ubuntu: noble
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+      - name: Run Linter
+        env:
+          AMENT_CPPCHECK_ALLOW_SLOW_VERSIONS: 1
+        uses: ros-tooling/action-ros-lint@v0.1
+        with:
+          linter: ${{ matrix.linter }}
+          distribution: ${{ matrix.ros_distro }}
+          package-name: ${{ matrix.package }}
+
+  build_and_test:
+    runs-on: ubuntu-latest
+    container:
+      image: rostooling/setup-ros-docker:ubuntu-${{ matrix.ubuntu }}-ros-${{ matrix.ros_distro }}-ros-base-latest
+
+    needs: ament_lint
+
+    strategy:
+      matrix:
+        ros_distro: [jazzy]
+        include:
+          - ros_distro: jazzy
+            ubuntu: noble
+
+    steps:
+      - name: Build and run tests
+        uses: ros-tooling/action-ros-ci@v0.4
+        with:
+          package-name: |
+            brum_camera
+            brum_bringup
+            brum_description
+            brum_control
+            brum_navigation
+          target-ros2-distro: ${{ matrix.ros_distro }}

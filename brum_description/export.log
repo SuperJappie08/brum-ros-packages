@@ -1,4 +1,4 @@
-2025-05-28 22:33:50,622 INFO  Logger.cs: 70 - 
+2025-05-28 22:33:50,622 INFO  Logger.cs: 70 -
 --------------------------------------------------------------------------------
 2025-05-28 22:33:50,642 INFO  Logger.cs: 71 - Logging commencing for SW2URDF exporter
 2025-05-28 22:33:50,644 INFO  Logger.cs: 73 - Commit version 1.6.0-4-g7f85cfe
@@ -4043,7 +4043,7 @@
 2025-05-28 22:36:51,866 INFO  ExportHelperExtension.cs: 857 - L2: 0
 2025-05-28 22:36:52,937 INFO  ExportHelperExtension.cs: 1247 - Parent SW Component: SuperBrum65-frame-1/SuperBasePlateLow-1
 2025-05-28 22:36:52,938 INFO  ExportHelperExtension.cs: 1248 - Child SW Component: ball-caster-self-1
-2025-05-28 22:36:52,939 INFO  ExportHelperExtension.cs: 1253 - Determining limit mate eligibility 
+2025-05-28 22:36:52,939 INFO  ExportHelperExtension.cs: 1253 - Determining limit mate eligibility
 2025-05-28 22:36:52,940 INFO  ExportHelperExtension.cs: 1259 - Adding component entity: ball-caster-self-1
 2025-05-28 22:36:52,940 INFO  ExportHelperExtension.cs: 1259 - Adding component entity: SuperBrum65-frame-1/SuperBasePlateLow-1
 2025-05-28 22:36:52,941 INFO  ExportHelperExtension.cs: 1264 - Adding component entity: SuperBrum65-frame-1
@@ -5046,7 +5046,7 @@
 2025-05-28 22:41:42,984 INFO  ExportHelper.cs: 450 - Saving users preferences
 2025-05-28 22:41:42,986 INFO  ExportHelper.cs: 190 - Modifying STL preferences
 2025-05-28 22:41:42,987 INFO  ExportHelper.cs: 464 - Setting STL preferences
-2025-05-28 22:41:42,994 INFO  ExportHelper.cs: 196 - Found 0 hidden components 
+2025-05-28 22:41:42,994 INFO  ExportHelper.cs: 196 - Found 0 hidden components
 2025-05-28 22:41:42,995 INFO  ExportHelper.cs: 197 - Hiding all components
 2025-05-28 22:41:44,560 INFO  ExportHelper.cs: 204 - Beginning individual files export
 2025-05-28 22:41:44,564 INFO  ExportHelper.cs: 270 - Exporting link: base_link
@@ -5054,19 +5054,19 @@
 2025-05-28 22:41:44,566 INFO  ExportHelper.cs: 270 - Exporting link: powerbank_link
 2025-05-28 22:41:44,567 INFO  ExportHelper.cs: 272 - Link powerbank_link has 0 children
 2025-05-28 22:41:44,568 INFO  ExportHelper.cs: 317 - powerbank_link: Exporting STL with coordinate frame Origin_powerbank_joint
-2025-05-28 22:41:44,569 INFO  ExportHelper.cs: 322 - powerbank_link: Reference geometry name 
+2025-05-28 22:41:44,569 INFO  ExportHelper.cs: 322 - powerbank_link: Reference geometry name
 2025-05-28 22:41:44,934 INFO  ExportHelper.cs: 330 - Saving STL to C:\Users\jvbra\Documents\beun-bot\urdf\SuperBrum65_v1.5_description\meshes\powerbank_link.STL
 2025-05-28 22:41:45,151 INFO  ExportHelper.cs: 405 - Removing SW header in STL file
 2025-05-28 22:41:45,152 INFO  ExportHelper.cs: 270 - Exporting link: right_wheel
 2025-05-28 22:41:45,153 INFO  ExportHelper.cs: 272 - Link right_wheel has 0 children
 2025-05-28 22:41:45,154 INFO  ExportHelper.cs: 317 - right_wheel: Exporting STL with coordinate frame Origin_right_wheel_joint
-2025-05-28 22:41:45,157 INFO  ExportHelper.cs: 322 - right_wheel: Reference geometry name 
+2025-05-28 22:41:45,157 INFO  ExportHelper.cs: 322 - right_wheel: Reference geometry name
 2025-05-28 22:41:45,279 INFO  ExportHelper.cs: 330 - Saving STL to C:\Users\jvbra\Documents\beun-bot\urdf\SuperBrum65_v1.5_description\meshes\right_wheel.STL
 2025-05-28 22:41:47,816 INFO  ExportHelper.cs: 405 - Removing SW header in STL file
 2025-05-28 22:41:47,818 INFO  ExportHelper.cs: 270 - Exporting link: left_wheel
 2025-05-28 22:41:47,819 INFO  ExportHelper.cs: 272 - Link left_wheel has 0 children
 2025-05-28 22:41:47,819 INFO  ExportHelper.cs: 317 - left_wheel: Exporting STL with coordinate frame Origin_left_wheel_joint
-2025-05-28 22:41:47,820 INFO  ExportHelper.cs: 322 - left_wheel: Reference geometry name 
+2025-05-28 22:41:47,820 INFO  ExportHelper.cs: 322 - left_wheel: Reference geometry name
 2025-05-28 22:41:48,231 INFO  ExportHelper.cs: 330 - Saving STL to C:\Users\jvbra\Documents\beun-bot\urdf\SuperBrum65_v1.5_description\meshes\left_wheel.STL
 2025-05-28 22:41:51,141 INFO  ExportHelper.cs: 405 - Removing SW header in STL file
 2025-05-28 22:41:51,143 INFO  ExportHelper.cs: 270 - Exporting link: camera_mount_link
@@ -5074,11 +5074,11 @@
 2025-05-28 22:41:51,144 INFO  ExportHelper.cs: 270 - Exporting link: camera_link
 2025-05-28 22:41:51,145 INFO  ExportHelper.cs: 272 - Link camera_link has 0 children
 2025-05-28 22:41:51,145 INFO  ExportHelper.cs: 317 - camera_link: Exporting STL with coordinate frame Origin_camera_joint
-2025-05-28 22:41:51,145 INFO  ExportHelper.cs: 322 - camera_link: Reference geometry name 
+2025-05-28 22:41:51,145 INFO  ExportHelper.cs: 322 - camera_link: Reference geometry name
 2025-05-28 22:41:51,185 INFO  ExportHelper.cs: 330 - Saving STL to C:\Users\jvbra\Documents\beun-bot\urdf\SuperBrum65_v1.5_description\meshes\camera_link.STL
 2025-05-28 22:41:51,294 INFO  ExportHelper.cs: 405 - Removing SW header in STL file
 2025-05-28 22:41:51,295 INFO  ExportHelper.cs: 317 - camera_mount_link: Exporting STL with coordinate frame Origin_camera_mount_joint
-2025-05-28 22:41:51,296 INFO  ExportHelper.cs: 322 - camera_mount_link: Reference geometry name 
+2025-05-28 22:41:51,296 INFO  ExportHelper.cs: 322 - camera_mount_link: Reference geometry name
 2025-05-28 22:41:51,450 INFO  ExportHelper.cs: 330 - Saving STL to C:\Users\jvbra\Documents\beun-bot\urdf\SuperBrum65_v1.5_description\meshes\camera_mount_link.STL
 2025-05-28 22:41:51,902 INFO  ExportHelper.cs: 405 - Removing SW header in STL file
 2025-05-28 22:41:51,903 INFO  ExportHelper.cs: 270 - Exporting link: under_cairrage_link
@@ -5086,27 +5086,27 @@
 2025-05-28 22:41:51,905 INFO  ExportHelper.cs: 270 - Exporting link: center_sonar_link
 2025-05-28 22:41:51,906 INFO  ExportHelper.cs: 272 - Link center_sonar_link has 0 children
 2025-05-28 22:41:51,906 INFO  ExportHelper.cs: 317 - center_sonar_link: Exporting STL with coordinate frame Origin_center_sonar_joint
-2025-05-28 22:41:51,906 INFO  ExportHelper.cs: 322 - center_sonar_link: Reference geometry name 
+2025-05-28 22:41:51,906 INFO  ExportHelper.cs: 322 - center_sonar_link: Reference geometry name
 2025-05-28 22:41:53,047 INFO  ExportHelper.cs: 330 - Saving STL to C:\Users\jvbra\Documents\beun-bot\urdf\SuperBrum65_v1.5_description\meshes\center_sonar_link.STL
 2025-05-28 22:41:57,296 INFO  ExportHelper.cs: 405 - Removing SW header in STL file
 2025-05-28 22:41:57,298 INFO  ExportHelper.cs: 317 - under_cairrage_link: Exporting STL with coordinate frame Origin_under_cairrage_joint
-2025-05-28 22:41:57,298 INFO  ExportHelper.cs: 322 - under_cairrage_link: Reference geometry name 
+2025-05-28 22:41:57,298 INFO  ExportHelper.cs: 322 - under_cairrage_link: Reference geometry name
 2025-05-28 22:41:57,950 INFO  ExportHelper.cs: 330 - Saving STL to C:\Users\jvbra\Documents\beun-bot\urdf\SuperBrum65_v1.5_description\meshes\under_cairrage_link.STL
 2025-05-28 22:41:58,791 INFO  ExportHelper.cs: 405 - Removing SW header in STL file
 2025-05-28 22:41:58,793 INFO  ExportHelper.cs: 270 - Exporting link: caster_link
 2025-05-28 22:41:58,793 INFO  ExportHelper.cs: 272 - Link caster_link has 0 children
 2025-05-28 22:41:58,793 INFO  ExportHelper.cs: 317 - caster_link: Exporting STL with coordinate frame Origin_caster_joint
-2025-05-28 22:41:58,794 INFO  ExportHelper.cs: 322 - caster_link: Reference geometry name 
+2025-05-28 22:41:58,794 INFO  ExportHelper.cs: 322 - caster_link: Reference geometry name
 2025-05-28 22:41:58,837 INFO  ExportHelper.cs: 330 - Saving STL to C:\Users\jvbra\Documents\beun-bot\urdf\SuperBrum65_v1.5_description\meshes\caster_link.STL
 2025-05-28 22:41:58,966 INFO  ExportHelper.cs: 405 - Removing SW header in STL file
 2025-05-28 22:41:58,968 INFO  ExportHelper.cs: 270 - Exporting link: laser_link
 2025-05-28 22:41:58,969 INFO  ExportHelper.cs: 272 - Link laser_link has 0 children
 2025-05-28 22:41:58,969 INFO  ExportHelper.cs: 317 - laser_link: Exporting STL with coordinate frame Origin_laser_joint
-2025-05-28 22:41:58,970 INFO  ExportHelper.cs: 322 - laser_link: Reference geometry name 
+2025-05-28 22:41:58,970 INFO  ExportHelper.cs: 322 - laser_link: Reference geometry name
 2025-05-28 22:41:59,165 INFO  ExportHelper.cs: 330 - Saving STL to C:\Users\jvbra\Documents\beun-bot\urdf\SuperBrum65_v1.5_description\meshes\laser_link.STL
 2025-05-28 22:41:59,888 INFO  ExportHelper.cs: 405 - Removing SW header in STL file
 2025-05-28 22:41:59,888 INFO  ExportHelper.cs: 317 - base_link: Exporting STL with coordinate frame Origin_global
-2025-05-28 22:41:59,889 INFO  ExportHelper.cs: 322 - base_link: Reference geometry name 
+2025-05-28 22:41:59,889 INFO  ExportHelper.cs: 322 - base_link: Reference geometry name
 2025-05-28 22:42:01,741 INFO  ExportHelper.cs: 330 - Saving STL to C:\Users\jvbra\Documents\beun-bot\urdf\SuperBrum65_v1.5_description\meshes\base_link.STL
 2025-05-28 22:42:14,263 INFO  ExportHelper.cs: 405 - Removing SW header in STL file
 2025-05-28 22:42:14,265 INFO  ExportHelper.cs: 145 - Showing all components except previously hidden components
@@ -8136,7 +8136,7 @@
 2025-05-28 22:55:48,829 INFO  ExportHelperExtension.cs: 857 - L2: 0
 2025-05-28 22:55:50,268 INFO  ExportHelperExtension.cs: 1247 - Parent SW Component: SuperBrum65-frame-1/SuperBasePlateLow-1
 2025-05-28 22:55:50,269 INFO  ExportHelperExtension.cs: 1248 - Child SW Component: ball-caster-self-1
-2025-05-28 22:55:50,269 INFO  ExportHelperExtension.cs: 1253 - Determining limit mate eligibility 
+2025-05-28 22:55:50,269 INFO  ExportHelperExtension.cs: 1253 - Determining limit mate eligibility
 2025-05-28 22:55:50,269 INFO  ExportHelperExtension.cs: 1259 - Adding component entity: ball-caster-self-1
 2025-05-28 22:55:50,270 INFO  ExportHelperExtension.cs: 1259 - Adding component entity: SuperBrum65-frame-1/SuperBasePlateLow-1
 2025-05-28 22:55:51,154 INFO  ExportHelperExtension.cs: 1264 - Adding component entity: SuperBrum65-frame-1
@@ -9139,7 +9139,7 @@
 2025-05-28 23:00:12,511 INFO  ExportHelper.cs: 450 - Saving users preferences
 2025-05-28 23:00:12,512 INFO  ExportHelper.cs: 190 - Modifying STL preferences
 2025-05-28 23:00:12,512 INFO  ExportHelper.cs: 464 - Setting STL preferences
-2025-05-28 23:00:12,515 INFO  ExportHelper.cs: 196 - Found 0 hidden components 
+2025-05-28 23:00:12,515 INFO  ExportHelper.cs: 196 - Found 0 hidden components
 2025-05-28 23:00:12,516 INFO  ExportHelper.cs: 197 - Hiding all components
 2025-05-28 23:00:14,547 INFO  ExportHelper.cs: 204 - Beginning individual files export
 2025-05-28 23:00:14,549 INFO  ExportHelper.cs: 270 - Exporting link: base_link
@@ -9147,19 +9147,19 @@
 2025-05-28 23:00:14,551 INFO  ExportHelper.cs: 270 - Exporting link: powerbank_link
 2025-05-28 23:00:14,552 INFO  ExportHelper.cs: 272 - Link powerbank_link has 0 children
 2025-05-28 23:00:14,552 INFO  ExportHelper.cs: 317 - powerbank_link: Exporting STL with coordinate frame Origin_powerbank_joint
-2025-05-28 23:00:14,553 INFO  ExportHelper.cs: 322 - powerbank_link: Reference geometry name 
+2025-05-28 23:00:14,553 INFO  ExportHelper.cs: 322 - powerbank_link: Reference geometry name
 2025-05-28 23:00:14,957 INFO  ExportHelper.cs: 330 - Saving STL to C:\Users\jvbra\Documents\beun-bot\urdf\SuperBrum65_v2_description\meshes\powerbank_link.STL
 2025-05-28 23:00:15,116 INFO  ExportHelper.cs: 405 - Removing SW header in STL file
 2025-05-28 23:00:15,118 INFO  ExportHelper.cs: 270 - Exporting link: right_wheel
 2025-05-28 23:00:15,119 INFO  ExportHelper.cs: 272 - Link right_wheel has 0 children
 2025-05-28 23:00:15,119 INFO  ExportHelper.cs: 317 - right_wheel: Exporting STL with coordinate frame Origin_right_wheel_joint
-2025-05-28 23:00:15,120 INFO  ExportHelper.cs: 322 - right_wheel: Reference geometry name 
+2025-05-28 23:00:15,120 INFO  ExportHelper.cs: 322 - right_wheel: Reference geometry name
 2025-05-28 23:00:15,194 INFO  ExportHelper.cs: 330 - Saving STL to C:\Users\jvbra\Documents\beun-bot\urdf\SuperBrum65_v2_description\meshes\right_wheel.STL
 2025-05-28 23:00:17,710 INFO  ExportHelper.cs: 405 - Removing SW header in STL file
 2025-05-28 23:00:17,713 INFO  ExportHelper.cs: 270 - Exporting link: left_wheel
 2025-05-28 23:00:17,714 INFO  ExportHelper.cs: 272 - Link left_wheel has 0 children
 2025-05-28 23:00:17,714 INFO  ExportHelper.cs: 317 - left_wheel: Exporting STL with coordinate frame Origin_left_wheel_joint
-2025-05-28 23:00:17,715 INFO  ExportHelper.cs: 322 - left_wheel: Reference geometry name 
+2025-05-28 23:00:17,715 INFO  ExportHelper.cs: 322 - left_wheel: Reference geometry name
 2025-05-28 23:00:18,419 INFO  ExportHelper.cs: 330 - Saving STL to C:\Users\jvbra\Documents\beun-bot\urdf\SuperBrum65_v2_description\meshes\left_wheel.STL
 2025-05-28 23:00:21,569 INFO  ExportHelper.cs: 405 - Removing SW header in STL file
 2025-05-28 23:00:21,585 INFO  ExportHelper.cs: 270 - Exporting link: camera_mount_link
@@ -9167,11 +9167,11 @@
 2025-05-28 23:00:21,587 INFO  ExportHelper.cs: 270 - Exporting link: camera_link
 2025-05-28 23:00:21,588 INFO  ExportHelper.cs: 272 - Link camera_link has 0 children
 2025-05-28 23:00:21,589 INFO  ExportHelper.cs: 317 - camera_link: Exporting STL with coordinate frame Origin_camera_joint
-2025-05-28 23:00:21,589 INFO  ExportHelper.cs: 322 - camera_link: Reference geometry name 
+2025-05-28 23:00:21,589 INFO  ExportHelper.cs: 322 - camera_link: Reference geometry name
 2025-05-28 23:00:21,691 INFO  ExportHelper.cs: 330 - Saving STL to C:\Users\jvbra\Documents\beun-bot\urdf\SuperBrum65_v2_description\meshes\camera_link.STL
 2025-05-28 23:00:21,831 INFO  ExportHelper.cs: 405 - Removing SW header in STL file
 2025-05-28 23:00:21,832 INFO  ExportHelper.cs: 317 - camera_mount_link: Exporting STL with coordinate frame Origin_camera_mount_joint
-2025-05-28 23:00:21,832 INFO  ExportHelper.cs: 322 - camera_mount_link: Reference geometry name 
+2025-05-28 23:00:21,832 INFO  ExportHelper.cs: 322 - camera_mount_link: Reference geometry name
 2025-05-28 23:00:21,985 INFO  ExportHelper.cs: 330 - Saving STL to C:\Users\jvbra\Documents\beun-bot\urdf\SuperBrum65_v2_description\meshes\camera_mount_link.STL
 2025-05-28 23:00:22,513 INFO  ExportHelper.cs: 405 - Removing SW header in STL file
 2025-05-28 23:00:22,515 INFO  ExportHelper.cs: 270 - Exporting link: under_cairrage_link
@@ -9179,27 +9179,27 @@
 2025-05-28 23:00:22,516 INFO  ExportHelper.cs: 270 - Exporting link: center_sonar_link
 2025-05-28 23:00:22,517 INFO  ExportHelper.cs: 272 - Link center_sonar_link has 0 children
 2025-05-28 23:00:22,517 INFO  ExportHelper.cs: 317 - center_sonar_link: Exporting STL with coordinate frame Origin_center_sonar_joint
-2025-05-28 23:00:22,518 INFO  ExportHelper.cs: 322 - center_sonar_link: Reference geometry name 
+2025-05-28 23:00:22,518 INFO  ExportHelper.cs: 322 - center_sonar_link: Reference geometry name
 2025-05-28 23:00:24,301 INFO  ExportHelper.cs: 330 - Saving STL to C:\Users\jvbra\Documents\beun-bot\urdf\SuperBrum65_v2_description\meshes\center_sonar_link.STL
 2025-05-28 23:00:28,853 INFO  ExportHelper.cs: 405 - Removing SW header in STL file
 2025-05-28 23:00:28,854 INFO  ExportHelper.cs: 317 - under_cairrage_link: Exporting STL with coordinate frame Origin_under_cairrage_joint
-2025-05-28 23:00:28,855 INFO  ExportHelper.cs: 322 - under_cairrage_link: Reference geometry name 
+2025-05-28 23:00:28,855 INFO  ExportHelper.cs: 322 - under_cairrage_link: Reference geometry name
 2025-05-28 23:00:29,617 INFO  ExportHelper.cs: 330 - Saving STL to C:\Users\jvbra\Documents\beun-bot\urdf\SuperBrum65_v2_description\meshes\under_cairrage_link.STL
 2025-05-28 23:00:30,824 INFO  ExportHelper.cs: 405 - Removing SW header in STL file
 2025-05-28 23:00:30,827 INFO  ExportHelper.cs: 270 - Exporting link: caster_link
 2025-05-28 23:00:30,828 INFO  ExportHelper.cs: 272 - Link caster_link has 0 children
 2025-05-28 23:00:30,828 INFO  ExportHelper.cs: 317 - caster_link: Exporting STL with coordinate frame Origin_caster_joint
-2025-05-28 23:00:30,829 INFO  ExportHelper.cs: 322 - caster_link: Reference geometry name 
+2025-05-28 23:00:30,829 INFO  ExportHelper.cs: 322 - caster_link: Reference geometry name
 2025-05-28 23:00:30,921 INFO  ExportHelper.cs: 330 - Saving STL to C:\Users\jvbra\Documents\beun-bot\urdf\SuperBrum65_v2_description\meshes\caster_link.STL
 2025-05-28 23:00:31,071 INFO  ExportHelper.cs: 405 - Removing SW header in STL file
 2025-05-28 23:00:31,073 INFO  ExportHelper.cs: 270 - Exporting link: laser_link
 2025-05-28 23:00:31,074 INFO  ExportHelper.cs: 272 - Link laser_link has 0 children
 2025-05-28 23:00:31,074 INFO  ExportHelper.cs: 317 - laser_link: Exporting STL with coordinate frame Origin_laser_joint
-2025-05-28 23:00:31,075 INFO  ExportHelper.cs: 322 - laser_link: Reference geometry name 
+2025-05-28 23:00:31,075 INFO  ExportHelper.cs: 322 - laser_link: Reference geometry name
 2025-05-28 23:00:31,347 INFO  ExportHelper.cs: 330 - Saving STL to C:\Users\jvbra\Documents\beun-bot\urdf\SuperBrum65_v2_description\meshes\laser_link.STL
 2025-05-28 23:00:32,068 INFO  ExportHelper.cs: 405 - Removing SW header in STL file
 2025-05-28 23:00:32,069 INFO  ExportHelper.cs: 317 - base_link: Exporting STL with coordinate frame Origin_global
-2025-05-28 23:00:32,070 INFO  ExportHelper.cs: 322 - base_link: Reference geometry name 
+2025-05-28 23:00:32,070 INFO  ExportHelper.cs: 322 - base_link: Reference geometry name
 2025-05-28 23:00:34,571 INFO  ExportHelper.cs: 330 - Saving STL to C:\Users\jvbra\Documents\beun-bot\urdf\SuperBrum65_v2_description\meshes\base_link.STL
 2025-05-28 23:00:47,795 INFO  ExportHelper.cs: 405 - Removing SW header in STL file
 2025-05-28 23:00:47,796 INFO  ExportHelper.cs: 145 - Showing all components except previously hidden components
